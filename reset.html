@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <link rel="stylesheet" href="reset.css">
+</head>
+<body>
+    <div class="container">
+        <div class="progress-steps">
+            <div class="progress-line"></div>
+            <div class="progress-step active" data-step="1">1</div>
+            <div class="progress-step" data-step="2">2</div>
+            <div class="progress-step" data-step="3">3</div>
+        </div>
+
+        <!-- Step 1: Request OTP -->
+        <div id="step1" class="step active">
+            <h1>Reset Password</h1>
+            <p class="info-box">Enter your email address to receive a verification code (OTP).</p>
+            <form id="emailForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required 
+                           placeholder="Enter your email">
+                </div>
+                <button type="submit" class="primary-button">Request OTP</button>
+                <div id="emailError" class="error-message"></div>
+                <div id="emailSuccess" class="success-message"></div>
+            </form>
+        </div>
+
+        <!-- Step 2: Verify OTP -->
+        <div id="step2" class="step">
+            <h1>Verify OTP</h1>
+            <p class="info-box">Enter the verification code (OTP) sent to your email.</p>
+            <form id="verificationForm">
+                <div class="form-group">
+                    <label for="otp">Verification Code</label>
+                    <input type="text" id="otp" required 
+                           placeholder="Enter OTP" 
+                           maxlength="6" 
+                           pattern="[0-9]*">
+                    <small class="input-help">Enter the 6-digit code sent to your email</small>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="primary-button">Verify OTP</button>
+                    <button type="button" class="back-button" onclick="showStep(1)">Back</button>
+                </div>
+                <div id="verificationError" class="error-message"></div>
+                <div id="verificationSuccess" class="success-message"></div>
+            </form>
+        </div>
+
+        <!-- Step 3: Set New Password -->
+        <div id="step3" class="step">
+            <h1>Set New Password</h1>
+            <p class="info-box">Create your new password.</p>
+            <form id="passwordChangeForm">
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" required 
+                           placeholder="Enter new password">
+                    <div class="password-requirements">
+                        Password must contain:
+                        <ul>
+                            <li>At least 8 characters</li>
+                            <li>One uppercase letter</li>
+                            <li>One lowercase letter</li>
+                            <li>One number</li>
+                            <li>One special character (!@#$%^&*)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required 
+                           placeholder="Confirm new password">
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="primary-button">Reset Password</button>
+                    <button type="button" class="back-button" onclick="showStep(2)">Back</button>
+                </div>
+                <div id="passwordChangeError" class="error-message"></div>
+                <div id="passwordChangeSuccess" class="success-message"></div>
+            </form>
+        </div>
+    </div>
+    <script src="reset.js"></script>
+</body>
+</html>
